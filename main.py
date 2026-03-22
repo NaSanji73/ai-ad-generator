@@ -13,7 +13,10 @@ app = FastAPI(
 # Allow React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+    "http://localhost:3000",
+    "https://ai-ad-generator-inky.vercel.app"
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

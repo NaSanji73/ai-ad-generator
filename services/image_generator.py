@@ -8,6 +8,8 @@ STABILITY_API_KEY = os.getenv("STABILITY_API_KEY")
 
 def generate_image(prompt: str):
     try:
+        print("👉 Prompt:", prompt)
+
         response = requests.post(
             "https://api.stability.ai/v2beta/stable-image/generate/sd3",
             headers={
@@ -23,12 +25,17 @@ def generate_image(prompt: str):
             }
         )
 
+        print("👉 Status:", response.status_code)
+
         if response.status_code == 200:
-            return response.content
+            import base64
+            image_base64 = base64.b64encode(response.content).decode("utf-8")
+            return f"data:image/png;base64,{image_base64}"
+
         else:
-            print("STABILITY ERROR:", response.text)
+            print("❌ STABILITY ERROR:", response.text)
             return None
 
     except Exception as e:
-        print("IMAGE ERROR:", e)
+        print("❌ IMAGE ERROR:", e)
         return None
