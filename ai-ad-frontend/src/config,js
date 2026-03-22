@@ -1,0 +1,1 @@
+export const API_BASE = "https://ai-ad-generator-se09.onrender.com";
