@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { API_BASE } from "../config";
 
 function Login() {
 
@@ -13,7 +14,7 @@ function Login() {
 
     try{
 
-      const response = await fetch("http://127.0.0.1:8001/login",{
+      const response = await fetch(`${API_BASE}/login`,{
         method:"POST",
         headers:{ "Content-Type":"application/json" },
         body: JSON.stringify({email,password})
